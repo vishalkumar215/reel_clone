@@ -18,7 +18,8 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {useState,useContext}  from 'react';
 import "./Login.css";
 import insta from "./Assets/instagram.jpg";
 import bg from "./Assets/insta.png";
@@ -48,6 +49,32 @@ export default function Login() {
     },
   });
   const classes = useStyles();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [ error ,setError] = useState('');
+  const [loading , setLoading] = useState('')
+  const navigate = useNavigate()
+  const {login} = useContext(AuthContext)
+
+  const handleClick = async()=>{
+    try{
+      setError('');
+      setLoading(true);
+      let res = await login(email,password);
+      setLoading(false);
+      navigate("/")
+    }catch(err){
+      setError(err);
+      setTimeout(()=>{
+        setError('')
+      },2000)
+      setLoading(false);
+
+
+    }
+
+  }
 
   return (
     <div className="loginWrapper">
@@ -95,9 +122,9 @@ export default function Login() {
           </div>
 
           <CardContent>
-            {true && (
+            {error != '' && (
               <Alert severity="error">
-                This is an error alert — check it out!
+               {error}
               </Alert>
             )}
 
@@ -108,6 +135,8 @@ export default function Login() {
               fullWidth={true}
               margin="dense"
               size="small"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
             />
             <TextField
               id="outlined-basic"
@@ -116,6 +145,8 @@ export default function Login() {
               fullWidth={true}
               margin="dense"
               size="small"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <Typography
               className={classes.text2}
@@ -126,7 +157,7 @@ export default function Login() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button color="primary" fullWidth={true} variant="contained">
+            <Button color="primary" fullWidth={true} variant="contained" onClick={handleClick} disbled ={loading}>
               Log In
             </Button>
           </CardActions>

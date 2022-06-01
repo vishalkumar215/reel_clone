@@ -20,12 +20,12 @@ export function AuthProvider({children}){
     }
 
     useEffect(()=>{
-      const unsubb = auth.onAuthStateChanged((user)=>{
+      const unsub = auth.onAuthStateChanged((user)=>{
           setUser(user)
           setLoading(false)
       })
       return ()=>{
-          unsubb();
+          unsub();
       }
     },[]) // component did mount only
 
@@ -35,7 +35,7 @@ export function AuthProvider({children}){
         login,
         logout
     }
-    return <AuthContext.Provider>
+    return <AuthContext.Provider value={store}>
         {!loading && children }
 
     </AuthContext.Provider>
