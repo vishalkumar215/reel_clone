@@ -1,8 +1,8 @@
 .video-container{
     height: 80vh;
     width: 21vw;
-    margin-top: 4rem;
-    /* border: 2px solid red; */
+    margin-top: 1rem;
+    border: 3px solid #E1306C;
     border-radius: 20px;
     background-color: white;
     overflow: scroll;

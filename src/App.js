@@ -6,9 +6,11 @@ import Feed from './components/Feed';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Profile from './components/Profile'
+
 // import PrivateRoute from './components/PrivateRoute'
 function App() {
   return (
+   
     <BrowserRouter>
       <AuthProvider>
         <Routes>
@@ -52,7 +54,7 @@ function App() {
            
         </Routes>
       </AuthProvider>
-    </BrowserRouter>
+     </BrowserRouter>
   );
 }
 

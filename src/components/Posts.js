@@ -72,8 +72,8 @@ function Posts({ userData }) {
               <div className="videos">
                 <Video src={post.pUrl} />
                 <div className="fa">
-                  <Avatar src={post.uProfile} />
-                  <h4>{post.uName}</h4>
+                  <Avatar src={userData.profileUrl} />
+                  <h4>{userData.fullname}</h4>
                 </div>
                 <Like userData={userData} postData={post} />
                 <ChatBubbleIcon className="chat-styling" onClick={()=>handleClickOpen(post.pId)} />

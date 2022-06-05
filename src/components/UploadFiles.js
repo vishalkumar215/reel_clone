@@ -6,6 +6,8 @@ import LinearProgress from '@mui/material/LinearProgress';
 import {v4 as uuidv4} from 'uuid'
 import { database,storage } from '../firebase';
 
+
+
 function UploadFiles(props) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -89,6 +91,8 @@ function UploadFiles(props) {
           />
           <label htmlFor="upload-input">
             <Button
+            style={{marginTop:'5rem'}}
+            className="upload-button"
               variant="outlined"
               color="secondary"
               component="span"
