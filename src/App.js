@@ -5,21 +5,14 @@ import Login from "./components/Login";
 import Feed from './components/Feed';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import PrivateRoute from './components/PrivateRoute'
+import Profile from './components/Profile'
+// import PrivateRoute from './components/PrivateRoute'
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-        <Route
-            path="/"
-            element={
-              <>
-                {" "}
-                <Feed/> 
-              </>
-            }
-          />
+        
           <Route
             path="/login"
             element={
@@ -35,6 +28,24 @@ function App() {
               <>
                 {" "}
                 <Signup/>
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {" "}
+                <Feed/> 
+              </>
+            }
+          />
+          <Route
+            path="/profile/:id"
+            element={
+              <>
+                {" "}
+                <Profile/> 
               </>
             }
           />
